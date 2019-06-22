@@ -1,6 +1,7 @@
 # Deep Convolutional Denoising Autoencoder
- ![](saved_images/frame.png)
-This project is an implementation of a Deep Convolutional Denoising Autoencoder to denoise a corrupted image. The noise level is not needed to be known. Denoising helps the autoencoders to learn the latent representation present in the data. Denoising autoencoders ensures a good representation is one that can be derived robustly from a corrupted input and that will be useful for recovering the corresponding clean input.
+![](saved_images/frame.png)
+<br />  
+This project is an implementation of a Deep Convolutional Denoising Autoencoder to denoise corrupted images. The noise level is not needed to be known. Denoising helps the autoencoders to learn the latent representation present in the data. Denoising autoencoders ensures a good representation is one that can be derived robustly from a corrupted input and that will be useful for recovering the corresponding clean input.
 
 ## Table of Contents
 * [Requirements](#requirements)
@@ -30,10 +31,10 @@ The architecture somewhat resembles U-Net, an encoder-decoder network with skip 
 
 
 ## Data Augmentation  
-### ImageDataGenerator and Random Cropping
+#### ImageDataGenerator and Random Cropping
 This part had the biggest challenge. Since we're using a very small set for training, it is imparative to have good image augmentations. Keras' `ImageDataGenerator` class comes with different functionalities but it lacks an important one: random cropping. Since the images have different sizes, it is not optimal to resize them to a fixed size that would result in  deformation and degrading images.  
 I dug into Keras' source code and found that a function called `load_img` referenced as `keras.preprocessing.image.image.load_img` takes care of loading images and then immediately resizing them to a specifed size. So defind my own function that performs random cropping and overrided it with the original function.  
-### Additive Gaussian Noise  
+#### Additive Gaussian Noise  
 During training process, gaussian noises of different standard deviations are added to the inputs. The standard deviation is itself a random parameter and follows an exponential distribution.  
 
 
